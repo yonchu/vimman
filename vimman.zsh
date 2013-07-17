@@ -10,7 +10,7 @@
 #  Author      : Yonchu <yuyuchu3333@gmail.com>
 #  License     : MIT License
 #  Repository  : https://github.com/yonchu/vimman
-#  Last Change : 10 Jul 2013.
+#  Last Change : 18 Jul 2013.
 #
 #  Copyright (c) 2013 Yonchu.
 #
@@ -116,7 +116,7 @@ function _vimman() {
     # Retrieve cache.
     #   The cache file name: vimman
     #   The cache variable name: _vimman_help_files
-    if ( [[ ${+_vimman_help_files} -eq 0 ]] \
+    if ( ! (( $+_vimman_help_files )) \
         || _cache_invalid 'vimman' ) \
         && ! _retrieve_cache 'vimman'; then
         update_msg=' (cache updated)'
