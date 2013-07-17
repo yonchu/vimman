@@ -165,7 +165,7 @@ function _vimman_get_help_files() {
     # Get help files.
     help_files=()
     for dir in "$doc[@]"; do
-        if [[ $dir =~ '/.neobundle/' ]]; then
+        if [[ $dir =~ '/\.neobundle/' ]]; then
             continue
         fi
         files=(${(f)"$(ls -1 "$dir")"})
