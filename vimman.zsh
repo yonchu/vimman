@@ -172,7 +172,7 @@ function _vimman_get_help_files() {
         for f in "$files[@]"; do
             if [[ $f =~ '.*\.(txt|jax)' ]]; then
                 if [[ $verbose == 'yes' ]]; then
-                    dir=${${dir/#$HOME/\~}%/}
+                    dir="${${dir/#$HOME/\~}%/}"
                     help_files+=("$f:$dir")
                 else
                     help_files+=("$f")
