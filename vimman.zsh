@@ -10,7 +10,7 @@
 #  Author      : Yonchu <yuyuchu3333@gmail.com>
 #  License     : MIT License
 #  Repository  : https://github.com/yonchu/vimman
-#  Last Change : 18 Jul 2013.
+#  Last Change : 22 Jul 2013.
 #
 #  Copyright (c) 2013 Yonchu.
 #
@@ -187,11 +187,7 @@ function _vimman_caching_policy() {
     # Returns status zero if the completions cache needs rebuilding.
     local -a oldp
     local expire
-    zstyle -s ':vimman:' expire expire
-    if [[ -z $expire ]]; then
-        # Set default expiration days.
-        expire=7
-    fi
+    zstyle -s ':vimman:' expire expire || expire=7
     # Rebuild if cache is more than $expire days.
     oldp=( "$1"(Nm+$expire) )
     (( $#oldp ))
