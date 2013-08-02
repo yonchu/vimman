@@ -3,11 +3,10 @@ vimman - View vim plugin manuals (help) like man in zsh
 
 vimehelp makes opening the vim help quickly in zsh.
 
+![animation01](https://raw.github.com/yonchu/vimman/master/img/animation01.gif)
 
+![Screenshot02](https://raw.github.com/yonchu/vimman/master/img/screenshot02.png)
 
-![Screenshot01](https://raw.github.com/yonchu/vimman/master/img/screenshot01.png)
-
-![Screenshot01](https://raw.github.com/yonchu/vimman/master/img/screenshot02.png)
 
 ## Installation
 
