@@ -10,7 +10,7 @@
 #  Author      : Yonchu <yuyuchu3333@gmail.com>
 #  License     : MIT License
 #  Repository  : https://github.com/yonchu/vimman
-#  Last Change : 22 Jul 2013.
+#  Last Change : 02 Aug 2013.
 #
 #  Copyright (c) 2013 Yonchu.
 #
@@ -100,7 +100,7 @@ function vimman() {
         return 1
     fi
 
-    echo "${(j:\n:)targets}"
+    echo "${(j:\n:)${targets[@]/#$HOME/~}}"
     "$editor" "${targets[@]}"
 }
 
