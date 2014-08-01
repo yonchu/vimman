@@ -92,7 +92,9 @@ function vimman() {
     done
 
     if [[ -d ~/.vim/doc ]]; then
-        targets+=(${(f)"$(find "$HOME/.vim/doc" -type f -name "$1")"})
+        if (( ${help_dir[(i)*/.vim/doc]} > ${#help_dir} )); then
+            targets+=(${(f)"$(find "$HOME/.vim/doc" -type f -name "$1")"})
+        fi
     fi
 
     if [[ ${#targets} -eq 0 ]]; then
@@ -159,7 +161,9 @@ function _vimman_get_help_files() {
     done
 
     if [[ -d ~/.vim/doc ]]; then
-        doc+=(~/.vim/doc)
+        if (( ${doc[(i)*/.vim/doc]} > ${#doc} )); then
+            doc+=(~/.vim/doc)
+        fi
     fi
 
     # Get help files.
