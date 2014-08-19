@@ -10,7 +10,7 @@
 #  Author      : Yonchu <yuyuchu3333@gmail.com>
 #  License     : MIT License
 #  Repository  : https://github.com/yonchu/vimman
-#  Last Change : 02 Aug 2013.
+#  Last Change : 19 Aug 2014.
 #
 #  Copyright (c) 2013 Yonchu.
 #
@@ -51,7 +51,7 @@ case $- in
 esac
 
 function vimman() {
-    local -a help_dir
+    typeset -aU help_dir
     local -a targets
     local param dir f
     local editor="$EDITOR"
@@ -81,6 +81,7 @@ function vimman() {
 
     # Target directories where search help file.
     zstyle -a ':vimman:' dir help_dir
+    help_dir+=(~/.vim/doc(N-/))
 
     # Setup doc directories.
     targets=()
@@ -90,12 +91,6 @@ function vimman() {
         fi
         targets+=(${(f)"$(find -L "$dir" -type d -name '.neobundle' -prune -o -type f -name "$1" -print)"})
     done
-
-    if [[ -d ~/.vim/doc ]]; then
-        if (( ${help_dir[(i)*/.vim/doc]} > ${#help_dir} )); then
-            targets+=(${(f)"$(find "$HOME/.vim/doc" -type f -name "$1")"})
-        fi
-    fi
 
     if [[ ${#targets} -eq 0 ]]; then
         echo "No manual entry for $1"
@@ -140,7 +135,7 @@ function _vimman() {
 }
 
 function _vimman_get_help_files() {
-    local -a help_dir
+    typeset -aU help_dir
     local -a doc
     local -a help_files
     local dir files f
@@ -148,6 +143,7 @@ function _vimman_get_help_files() {
 
     # Target directories to search help file.
     zstyle -a ':vimman:' dir help_dir
+    help_dir+=(~/.vim/doc(N-/))
 
     # Check verbose option.
     zstyle -b ':vimman:' verbose verbose
@@ -159,12 +155,6 @@ function _vimman_get_help_files() {
         fi
         doc+=(${(f)"$(find -L "$dir" -type d -name 'doc')"})
     done
-
-    if [[ -d ~/.vim/doc ]]; then
-        if (( ${doc[(i)*/.vim/doc]} > ${#doc} )); then
-            doc+=(~/.vim/doc)
-        fi
-    fi
 
     # Get help files.
     help_files=()
