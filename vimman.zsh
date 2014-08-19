@@ -88,11 +88,13 @@ function vimman() {
         if [[ ! -d $dir ]]; then
             continue
         fi
-        targets+=(${(f)"$(find "$dir" -type d -name '.neobundle' -prune -o -type f -name "$1" -print)"})
+        targets+=(${(f)"$(find -L "$dir" -type d -name '.neobundle' -prune -o -type f -name "$1" -print)"})
     done
 
     if [[ -d ~/.vim/doc ]]; then
-        targets+=(${(f)"$(find "$HOME/.vim/doc" -type f -name "$1")"})
+        if (( ${help_dir[(i)*/.vim/doc]} > ${#help_dir} )); then
+            targets+=(${(f)"$(find "$HOME/.vim/doc" -type f -name "$1")"})
+        fi
     fi
 
     if [[ ${#targets} -eq 0 ]]; then
@@ -155,11 +157,13 @@ function _vimman_get_help_files() {
         if [[ ! -d $dir ]]; then
             continue
         fi
-        doc+=(${(f)"$(find "$dir" -type d -name 'doc')"})
+        doc+=(${(f)"$(find -L "$dir" -type d -name 'doc')"})
     done
 
     if [[ -d ~/.vim/doc ]]; then
-        doc+=(~/.vim/doc)
+        if (( ${doc[(i)*/.vim/doc]} > ${#doc} )); then
+            doc+=(~/.vim/doc)
+        fi
     fi
 
     # Get help files.

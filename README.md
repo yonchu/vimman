@@ -41,7 +41,7 @@ zstyle ':completion:*' use-cache yes
 
 ## Customizing
 
-Custom plugin directories:
+Custom plugin directories (besides default `~/.vim/doc`):
 
 ```zsh
 zstyle ':vimman:' dir ~/.vim/bundle ~/hoge
